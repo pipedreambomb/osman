@@ -1,5 +1,3 @@
-import React from 'react';
-
 type ContestantScoreProps = {
   name: string;
   score: number;
