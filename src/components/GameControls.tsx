@@ -1,5 +1,3 @@
-import React from 'react';
-
 type GameControlsProps = {
   onCorrect: () => void;
   onSkip: () => void;
