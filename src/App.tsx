@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useLocalStorage } from '@uidotdev/usehooks';
 import { GameControls } from './components/GameControls';
 import { ScoreBoard } from './components/ScoreBoard';
+import {Contestant, createContestant} from './types/Contestant';
 
 function App() {
-  let initialContestants = [
-    { name: 'Mum', colour: 'text-pink-600', score: 0 },
-    { name: 'George', colour: 'text-cyan-600', score: 0 },
-    { name: 'Rob', colour: 'text-orange-600', score: 0 },
+  let initialContestants: Contestant[] = [
+    createContestant({ name: 'Mum', colour: 'text-pink-600'}),
+    createContestant({ name: 'George', colour: 'text-cyan-600'}),
+    createContestant({ name: 'Rob', colour: 'text-orange-600'}),
   ];
   let [contestants, setContestants] = useLocalStorage(
     'contestants',

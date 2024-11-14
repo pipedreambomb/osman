@@ -1,9 +1,4 @@
-type ContestantScoreProps = {
-  name: string;
-  score: number;
-  isTurnTaker: boolean;
-  colour: string;
-};
+
 
 
 export function ContestantScore({ name, score, isTurnTaker, colour }: ContestantScoreProps) {
