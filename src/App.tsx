@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useLocalStorage } from '@uidotdev/usehooks';
 import { GameControls } from './components/GameControls';
 import { ScoreBoard } from './components/ScoreBoard';
-import {Contestant, createContestant} from './types/Contestant';
+import { Contestant, createContestant } from './types/Contestant';
 
 function App() {
   let initialContestants: Contestant[] = [
-    createContestant({ name: 'Mum', colour: 'text-pink-600'}),
-    createContestant({ name: 'George', colour: 'text-cyan-600'}),
-    createContestant({ name: 'Rob', colour: 'text-orange-600'}),
+    createContestant({ name: 'Mum', colour: 'text-pink-600' }),
+    createContestant({ name: 'George', colour: 'text-cyan-600' }),
+    createContestant({ name: 'Rob', colour: 'text-orange-600' }),
   ];
   let [contestants, setContestants] = useLocalStorage(
     'contestants',
@@ -17,26 +17,36 @@ function App() {
   let [currentContestantIndex, setCurrentContestantIndex] = useState(0);
   let contestant = contestants[currentContestantIndex];
 
-  let rotateTurn = () =>
-    setCurrentContestantIndex(
-      currentContestantIndex === contestants.length - 1
-        ? 0
-        : currentContestantIndex + 1
-    );
-
-  let skipHandler = () => rotateTurn();
-
-  let correctHandler = () => {
+  let rotateTurn = (latestContestants: Contestant[]) => {
     setContestants(
-      contestants.map((c) => {
+      latestContestants.map((c) => {
         if (c.name === contestant.name) {
-          return { ...contestant, score: c.score + 1 };
+          return { ...c, attempts: c.attempts + 1 };
         } else {
           return c;
         }
       })
     );
-    rotateTurn();
+    setCurrentContestantIndex(
+      currentContestantIndex === contestants.length - 1
+        ? 0
+        : currentContestantIndex + 1
+    );
+  }
+
+  let skipHandler = () => rotateTurn(contestants);
+
+  let correctHandler = () => {
+    const latestContestants =
+      contestants.map((c) => {
+        if (c.name === contestant.name) {
+          return { ...c, score: c.score + 1 };
+        } else {
+          return c;
+        }
+      })
+
+    rotateTurn(latestContestants);
   };
 
   const sortedContestants = [...contestants].sort((a, b) => b.score - a.score);
