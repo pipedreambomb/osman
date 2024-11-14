@@ -49,7 +49,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={sortedContestants} />
+          <ScoreBoard contestants={sortedContestants} currentContestantName={contestant.name} />
 
           <div className="mt-6 text-center">
             <button
