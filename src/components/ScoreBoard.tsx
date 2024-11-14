@@ -1,10 +1,5 @@
 import { ContestantScore } from './ContestantScore';
-
-type Contestant = {
-  name: string;
-  score: number;
-  colour: string;
-};
+import { Contestant } from '../types/Contestant';
 
 type ScoreBoardProps = {
   contestants: Contestant[];
@@ -18,11 +13,8 @@ export function ScoreBoard({ contestants, currentContestantName }: ScoreBoardPro
       <div className="space-y-3">
         {contestants.map((c) => (
           <ContestantScore
-            key={c.name}
-            name={c.name}
-            score={c.score}
+            contestant={c}
             isTurnTaker={c.name === currentContestantName}
-            colour={c.colour}
           />
         ))}
       </div>
