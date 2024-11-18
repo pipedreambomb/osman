@@ -36,6 +36,8 @@ function App() {
 
   let skipHandler = () => rotateTurn(contestants);
 
+  let resetHandler = () => setContestants(initialContestants)
+
   let correctHandler = () => {
     const latestContestants =
       contestants.map((c) => {
@@ -64,10 +66,7 @@ function App() {
 
           <div className="mt-6 text-center">
             <button
-              onClick={() => {
-                window.localStorage.clear();
-                window.location.reload();
-              }}
+              onClick={resetHandler}
               className="text-sm text-gray-500 hover:text-gray-700 underline"
             >
               Reset Game
