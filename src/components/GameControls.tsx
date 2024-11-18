@@ -14,9 +14,9 @@ export function GameControls({ onCorrect, onSkip }: GameControlsProps) {
       </button>
       <button
         onClick={onSkip}
-        className="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
+        className="flex-1 bg-gray-400 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200"
       >
-        Skip
+        Pass
       </button>
     </div>
   );
