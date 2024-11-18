@@ -51,6 +51,8 @@ function App() {
     rotateTurn(latestContestants);
   };
 
+  const clickContestantHandler = (name: string) => { alert(`you clicked ${name}`)}
+
   const sortedContestants = [...contestants].sort((a, b) => b.score - a.score);
 
   return (
@@ -62,7 +64,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={sortedContestants} currentContestantName={contestant.name} />
+          <ScoreBoard contestants={sortedContestants} currentContestantName={contestant.name} onClickContestantScore={clickContestantHandler} />
 
           <div className="mt-6 text-center">
             <button
