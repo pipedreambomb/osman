@@ -54,7 +54,7 @@ function App() {
   const sortedContestants = [...contestants].sort((a, b) => b.score - a.score);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 py-12 px-4">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
         <div className="p-8">
           <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
