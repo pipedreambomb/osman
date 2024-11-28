@@ -5,19 +5,19 @@ import { ScoreBoard } from './components/ScoreBoard';
 import { Contestant, createContestant } from './types/Contestant';
 
 function App() {
-  let initialContestants: Contestant[] = [
+  const initialContestants: Contestant[] = [
     createContestant({ name: 'Mum', colour: 'text-pink-600' }),
     createContestant({ name: 'George', colour: 'text-cyan-600' }),
     createContestant({ name: 'Rob', colour: 'text-orange-600' }),
   ];
-  let [contestants, setContestants] = useLocalStorage(
+  const [contestants, setContestants] = useLocalStorage(
     'contestants',
     initialContestants
   );
-  let [currentContestantIndex, setCurrentContestantIndex] = useState(0);
-  let contestant = contestants[currentContestantIndex];
+  const [currentContestantIndex, setCurrentContestantIndex] = useState(0);
+  const contestant = contestants[currentContestantIndex];
 
-  let rotateTurn = (latestContestants: Contestant[]) => {
+  const rotateTurn = (latestContestants: Contestant[]) => {
     setContestants(
       latestContestants.map((c) => {
         if (c.name === contestant.name) {
@@ -34,11 +34,11 @@ function App() {
     );
   }
 
-  let skipHandler = () => rotateTurn(contestants);
+  const skipHandler = () => rotateTurn(contestants);
 
-  let resetHandler = () => setContestants(initialContestants)
+  const resetHandler = () => setContestants(initialContestants)
 
-  let correctHandler = () => {
+  const correctHandler = () => {
     const latestContestants =
       contestants.map((c) => {
         if (c.name === contestant.name) {
