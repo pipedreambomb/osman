@@ -51,8 +51,6 @@ function App() {
     rotateTurn(latestContestants);
   };
 
-  const sortedContestants = [...contestants].sort((a, b) => b.score - a.score);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 py-12 px-4">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
@@ -62,7 +60,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={sortedContestants} currentContestantName={contestant.name} />
+          <ScoreBoard contestants={contestants} currentContestantName={contestant.name} />
 
           <div className="mt-6 text-center">
             <button
