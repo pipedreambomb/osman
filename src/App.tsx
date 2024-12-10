@@ -53,6 +53,7 @@ function App() {
 
   const robPresenceToggleHandler = () => setIsRobMode(!isRobMode);
 
+  const filteredContestants = contestants.filter(c => isRobMode || c.name !== 'Rob');
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 px-4 pb-12">
       <div className="text-right text-blue-700 py-4" onClick={robPresenceToggleHandler}>Rob {isRobMode && 'not '} here?</div>
@@ -63,7 +64,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={contestants} currentContestantName={contestant.name} />
+          <ScoreBoard contestants={filteredContestants} currentContestantName={contestant.name} />
 
           <div className="mt-6 text-center">
             <button
