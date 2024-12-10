@@ -14,6 +14,7 @@ function App() {
     initialContestants
   );
   const [currentContestantIndex, setCurrentContestantIndex] = useLocalStorage('currentContestantIndex', 0);
+  const [isRobMode, setIsRobMode] = useLocalStorage('isRobMode', false);
   const contestant = contestants[currentContestantIndex];
 
   const rotateTurn = (latestContestants: Contestant[]) => {
@@ -50,8 +51,11 @@ function App() {
     rotateTurn(latestContestants);
   };
 
+  const robPresenceToggleHandler = () => setIsRobMode(!isRobMode);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 px-4 pb-12">
+      <div className="text-right text-blue-700 py-4" onClick={robPresenceToggleHandler}>Rob {isRobMode && 'not '} here?</div>
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
         <div className="p-8">
           <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
