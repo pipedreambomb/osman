@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useLocalStorage } from '@uidotdev/usehooks';
 import { GameControls } from './components/GameControls';
 import { ScoreBoard } from './components/ScoreBoard';
@@ -14,7 +13,7 @@ function App() {
     'contestants',
     initialContestants
   );
-  const [currentContestantIndex, setCurrentContestantIndex] = useState(0);
+  const [currentContestantIndex, setCurrentContestantIndex] = useLocalStorage('currentContestantIndex', 0);
   const contestant = contestants[currentContestantIndex];
 
   const rotateTurn = (latestContestants: Contestant[]) => {
