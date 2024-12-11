@@ -54,7 +54,13 @@ function App() {
     rotateTurn(latestContestants);
   };
 
-  const robPresenceToggleHandler = () => setIsRobMode(!isRobMode);
+  const robPresenceToggleHandler = () => {
+    if(window.confirm(`Are you sure you want to change to ${isRobMode ? 'No Rob' : 'Rob'} Mode?`, )) {
+      setIsRobMode(!isRobMode);
+      // Don't leave it as Rob's turn!
+      if(contestant.name === 'Rob') setCurrentContestantIndex(0);
+    }
+  }
 
   const filteredContestants = contestants.filter(c => isRobMode || c.name !== 'Rob');
   return (
