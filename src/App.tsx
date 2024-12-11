@@ -64,7 +64,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={filteredContestants} currentContestantName={contestant.name} />
+          <ScoreBoard contestants={filteredContestants} currentContestantName={contestant.name} isScoreHidden={!isRobMode} />
 
           <div className="mt-6 text-center">
             <button
