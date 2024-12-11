@@ -5,7 +5,7 @@ type ContestantScoreProps = {
   contestant: Contestant;
   isTurnTaker: boolean;
   isScoreHidden: boolean;
-  editScore: () => void;
+  editScore: (delta: number) => void;
 }
 
 export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editScore }: ContestantScoreProps) {
