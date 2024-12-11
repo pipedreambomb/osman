@@ -15,23 +15,25 @@ export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editSc
   return (
     (<div className={`p-3 rounded-lg ${isTurnTaker ? 'bg-yellow-100' : 'bg-white' }`} >
       <div className="flex justify-between items-center">
-        <span className={`text-xl font-medium ${contestant.colour || 'text-gray-700'}`}>
+        <span className={`flex-1 text-xl font-medium ${contestant.colour || 'text-gray-700'}`}>
           {contestant.name}
         </span>
-      {isScoreHidden === false &&
-        <span className={`text-3xl font-bold ${contestant.colour || 'text-indigo-600'}`}>
-          {contestant.score}
-          <span className={`text-base font-bold ${contestant.colour || 'text-indigo-600'}`}>
-            {` /  ${contestant.attempts}`}
+        {isScoreHidden === false &&
+        <div className="flex-1 flex">
+          <span className={`flex-1 text-3xl font-bold ${contestant.colour || 'text-indigo-600'}`}>
+            {contestant.score}
+            <span className={`text-base font-bold ${contestant.colour || 'text-indigo-600'}`}>
+              {` /  ${contestant.attempts}`}
+            </span>
           </span>
-        </span>
-      }
-        <span className={'text-lg font-medium text-gray-700'} onClick={() => setIsEditMode(!isEditMode)}>
-          {isEditMode ? '❌' : '📝'}
-        </span>
+          <span className={'flex-1 text-lg font-medium text-gray-700 text-right'} onClick={() => setIsEditMode(!isEditMode)}>
+            {isEditMode ? '❌' : '📝'}
+          </span>
+          </div>
+        }
       </div>
-      {isEditMode && 
-        <div className="flex py-3">
+      {isEditMode && !isScoreHidden && 
+        <div className="flex py-4">
           <span className="flex-1 text-lg text-center" onClick={() => editScore(-1)}>➖</span>
           <span className="flex-1 text-lg text-center" onClick={() => editScore(1)}>➕</span>
         </div>
