@@ -28,9 +28,13 @@ function App() {
       })
     );
     setCurrentContestantIndex(
-      currentContestantIndex === contestants.length - 1
-        ? 0
-        : currentContestantIndex + 1
+      isRobMode 
+        // If there are three contestants, increment the counter, looping back to the first if at the end.
+        ? currentContestantIndex === contestants.length - 1
+          ? 0
+          : currentContestantIndex + 1
+        // In no Rob mode, there are two contestants, so toggle between them.
+        : currentContestantIndex === 0 ? 1 : 0
     );
   }
 
