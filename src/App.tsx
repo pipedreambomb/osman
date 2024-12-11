@@ -14,6 +14,7 @@ function App() {
     initialContestants
   );
   const [currentContestantIndex, setCurrentContestantIndex] = useLocalStorage('currentContestantIndex', 0);
+  const [isRobMode, setIsRobMode] = useLocalStorage('isRobMode', false);
   const contestant = contestants[currentContestantIndex];
 
   const rotateTurn = (latestContestants: Contestant[]) => {
@@ -26,11 +27,14 @@ function App() {
         }
       })
     );
-    setCurrentContestantIndex(
-      currentContestantIndex === contestants.length - 1
-        ? 0
-        : currentContestantIndex + 1
-    );
+    
+    // If there are three contestants, increment the counter, looping back to the first if at the end.
+    if (isRobMode) setCurrentContestantIndex(currentContestantIndex === contestants.length - 1
+          ? 0
+          : currentContestantIndex + 1)
+    
+    // In no Rob mode, there are two contestants, so toggle between them.
+    else setCurrentContestantIndex(currentContestantIndex === 0 ? 1 : 0)
   }
 
   const skipHandler = () => rotateTurn(contestants);
@@ -50,8 +54,18 @@ function App() {
     rotateTurn(latestContestants);
   };
 
+  const robPresenceToggleHandler = () => {
+    if(window.confirm(`Change to ${isRobMode ? 'No Rob' : 'Rob'} Mode?`)) {
+      setIsRobMode(!isRobMode);
+      // Don't leave it as Rob's turn!
+      if(contestant.name === 'Rob') setCurrentContestantIndex(0);
+    }
+  }
+
+  const filteredContestants = contestants.filter(c => isRobMode || c.name !== 'Rob');
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 to-blue-300 px-4 pb-12">
+      <div className="text-right text-blue-700 py-4" onClick={robPresenceToggleHandler}>Rob {isRobMode && 'not '} here?</div>
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
         <div className="p-8">
           <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
@@ -59,7 +73,7 @@ function App() {
           </h1>
 
           <GameControls onCorrect={correctHandler} onSkip={skipHandler} />
-          <ScoreBoard contestants={contestants} currentContestantName={contestant.name} />
+          <ScoreBoard contestants={filteredContestants} currentContestantName={contestant.name} isScoreHidden={!isRobMode} />
 
           <div className="mt-6 text-center">
             <button
