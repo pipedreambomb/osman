@@ -55,7 +55,7 @@ function App() {
   };
 
   const robPresenceToggleHandler = () => {
-    if(window.confirm(`Are you sure you want to change to ${isRobMode ? 'No Rob' : 'Rob'} Mode?`)) {
+    if(window.confirm(`Change to ${isRobMode ? 'No Rob' : 'Rob'} Mode?`)) {
       setIsRobMode(!isRobMode);
       // Don't leave it as Rob's turn!
       if(contestant.name === 'Rob') setCurrentContestantIndex(0);
