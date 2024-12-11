@@ -5,7 +5,7 @@ type ContestantScoreProps = {
   contestant: Contestant;
   isTurnTaker: boolean;
   isScoreHidden: boolean;
-  editScore: (delta: number) => void;
+  editScore: (name: string, delta: number) => void;
 }
 
 export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editScore }: ContestantScoreProps) {
@@ -34,8 +34,8 @@ export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editSc
       </div>
       {isEditMode && !isScoreHidden && 
         <div className="flex py-4">
-          <span className="flex-1 text-lg text-center" onClick={() => editScore(-1)}>➖</span>
-          <span className="flex-1 text-lg text-center" onClick={() => editScore(1)}>➕</span>
+          <span className="flex-1 text-lg text-center" onClick={() => editScore(contestant.name, -1)}>➖</span>
+          <span className="flex-1 text-lg text-center" onClick={() => editScore(contestant.name, 1)}>➕</span>
         </div>
       }
     </div>)

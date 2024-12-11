@@ -63,9 +63,9 @@ function App() {
   }
 
   const filteredContestants = contestants.filter(c => isRobMode || c.name !== 'Rob');
-  const editScoreHandler = (delta: number) => 
+  const editScoreHandler = (name: string, delta: number) => 
     setContestants(contestants.map((c) => {
-        if (c.name === contestant.name) {
+        if (c.name === name) {
           return { ...c, score: c.score + delta };
         } else {
           return c;

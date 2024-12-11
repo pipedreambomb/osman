@@ -5,7 +5,7 @@ type ScoreBoardProps = {
   contestants: Contestant[];
   currentContestantName: string;
   isScoreHidden: boolean;
-  editScore: (delta: number) => void;
+  editScore: (name: string, delta: number) => void;
 };
 
 export function ScoreBoard({ contestants, currentContestantName, editScore, isScoreHidden }: ScoreBoardProps) {
