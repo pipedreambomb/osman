@@ -26,7 +26,7 @@ export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editSc
               {` /  ${contestant.attempts}`}
             </span>
           </span>
-          <span className={'flex-1 text-lg font-medium text-gray-700 text-right'} onClick={() => setIsEditMode(!isEditMode)}>
+          <span className={'flex-none text-lg font-medium text-gray-700 text-right'} onClick={() => setIsEditMode(!isEditMode)}>
             {isEditMode ? '❌' : '📝'}
           </span>
           </div>
