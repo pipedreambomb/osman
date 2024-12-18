@@ -16,7 +16,7 @@ export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editSc
   return (
     <AnimateHeight
         duration={300}
-        height={isEditMode && !isScoreHidden ? 'auto' : 60} 
+        height={isEditMode && !isScoreHidden ? 105 : 60} 
 
     className={`p-3 transition rounded-lg ${isTurnTaker ? 'bg-yellow-100' : 'bg-white' }`}>
         <div className="flex justify-between items-center">
