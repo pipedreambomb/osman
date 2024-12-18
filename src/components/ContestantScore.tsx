@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Contestant } from "../types/Contestant";
 import AnimateHeight from 'react-animate-height';
+import { MinusCircleIcon, PencilIcon, PlusCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 type ContestantScoreProps = {
   contestant: Contestant;
@@ -31,15 +32,15 @@ export function ContestantScore({ contestant, isTurnTaker, isScoreHidden, editSc
                 {` /  ${contestant.attempts}`}
               </span>
             </span>
-            <span className={'flex-none text-lg font-medium text-gray-700 text-right'} onClick={() => setIsEditMode(!isEditMode)}>
-              {isEditMode ? '❌' : '📝'}
-            </span>
+            	 {isEditMode 
+               ?  <XMarkIcon className={`flex-none  w-6 ${contestant.colour}`} onClick={() => setIsEditMode(!isEditMode)}/>
+               :  <PencilIcon className={`flex-none  w-6 ${contestant.colour}`} onClick={() => setIsEditMode(!isEditMode)}/>}
             </div>
           }
         </div>
           <div className="flex py-4">
-            <span className="flex-1 text-lg text-center" onClick={() => editScore(contestant.name, -1)}>➖</span>
-            <span className="flex-1 text-lg text-center" onClick={() => editScore(contestant.name, 1)}>➕</span>
+            <MinusCircleIcon className={`flex-1 h-8 ${contestant.colour}`} onClick={() => editScore(contestant.name, -1)}/>
+            <PlusCircleIcon className={`flex-1 h-8 ${contestant.colour}`} onClick={() => editScore(contestant.name, 1)}/>
           </div>
         
     </AnimateHeight>
