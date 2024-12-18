@@ -16,6 +16,7 @@ export function ScoreBoard({ contestants, currentContestantName, editScore, isSc
         {contestants.map((c) => (
           <ContestantScore
             contestant={c}
+            key={c.name}
             isTurnTaker={c.name === currentContestantName}
             isScoreHidden={isScoreHidden}
             editScore={editScore}
